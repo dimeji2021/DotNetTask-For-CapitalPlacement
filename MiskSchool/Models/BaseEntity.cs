@@ -5,6 +5,6 @@ namespace MiskSchool.Models
     public class BaseEntity
     {
         [JsonProperty(PropertyName = "id")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

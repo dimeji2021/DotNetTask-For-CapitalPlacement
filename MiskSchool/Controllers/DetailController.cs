@@ -35,6 +35,7 @@ namespace InterviewTask.Controllers
             try
             {
                 var req = _mapper.Map<ProgramDetails>(request);
+                req.Id = Guid.NewGuid().ToString();
                 return Ok(await _repository.AddAsync(req));
 
             }
@@ -45,9 +46,15 @@ namespace InterviewTask.Controllers
             }
         }
         [HttpPut]
-        public async Task<IActionResult> Put(string id, ProgramDetailsDto request)
+        public async Task<IActionResult> Put([FromHeader] string id, ProgramDetailsDto request)
         {
+            var program = await _repository.GetAsync(id);
+            if (program is null)
+            {
+                return BadRequest();
+            }
             var req = _mapper.Map<ProgramDetails>(request);
+            req.Id = id;
             return Ok(await _repository.UpdateAsync(id, req));
         }
     }

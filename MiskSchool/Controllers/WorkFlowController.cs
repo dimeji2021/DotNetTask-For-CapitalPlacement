@@ -32,7 +32,13 @@ namespace MiskSchool.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(string id, WorkFlowDto request)
         {
+            var flow = await _repository.GetAsync(id);
+            if (flow is null)
+            {
+                return BadRequest();
+            }
             var req = _mapper.Map<WorkFlow>(request);
+            req.Id = id;
             return Ok(await _repository.UpdateAsync(id, req));
         }
     }

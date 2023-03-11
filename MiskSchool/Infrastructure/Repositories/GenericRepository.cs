@@ -33,7 +33,7 @@ namespace InterviewTask.Infrastructure.Repository
         public async Task<List<T>> GetAsync()
         {
             var query = _container.GetItemQueryIterator<T>();
-            List<T> results = new List<T>();
+            var results = new List<T>();
             while (query.HasMoreResults)
             {
                 var response = await query.ReadNextAsync();
@@ -50,7 +50,7 @@ namespace InterviewTask.Infrastructure.Repository
 
         public async Task<T> UpdateAsync(string id, T request)
         {
-            ItemResponse<T> response = await _container.ReplaceItemAsync<T>(request, id, new PartitionKey(id));
+            var response = await _container.ReplaceItemAsync<T>(request, id, new PartitionKey(id));
             return response.Resource;
         }
 

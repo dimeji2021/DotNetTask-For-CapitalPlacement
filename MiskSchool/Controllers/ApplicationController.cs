@@ -32,7 +32,13 @@ namespace MiskSchool.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(string id, ApplicationFormDto request)
         {
+            var form = await _repository.GetAsync(id);
+            if (form is null)
+            {
+                return BadRequest();
+            }
             var req = _mapper.Map<ApplicationForm>(request);
+            req.Id = id;
             return Ok(await _repository.UpdateAsync(id, req));
         }
     }

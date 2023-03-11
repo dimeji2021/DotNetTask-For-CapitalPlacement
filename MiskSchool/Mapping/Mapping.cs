@@ -10,12 +10,9 @@ namespace MiskSchool.Mapping
     {
         public Mapping()
         {
-            CreateMap<ProgramDetails, ProgramDetailsDto>().ReverseMap()
-                .ForMember(dest => dest.Id, o => o.MapFrom(guid => Guid.NewGuid().ToString()));
-            CreateMap<WorkFlow, WorkFlowDto>().ReverseMap()
-               .ForMember(dest => dest.Id, o => o.MapFrom(guid => Guid.NewGuid().ToString()));
-            CreateMap<ApplicationForm, ApplicationFormDto>().ReverseMap()
-              .ForMember(dest => dest.Id, o => o.MapFrom(guid => Guid.NewGuid().ToString()));
+            CreateMap<ProgramDetails, ProgramDetailsDto>().ReverseMap();
+            CreateMap<WorkFlow, WorkFlowDto>().ReverseMap();
+            CreateMap<ApplicationForm, ApplicationFormDto>().ReverseMap();
         }
     }
 }
