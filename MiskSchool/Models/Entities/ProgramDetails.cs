@@ -10,7 +10,7 @@ namespace MiskSchool.Models.Entities
         public Skill KeySkill { get; set; }
         public string Benefit { get; set; }
         public string ApplicationCriteria { get; set; }
-        public AdditionalInformation AdditionalInformation { get; set; }
+        public AdditionalInformation? AdditionalInformation { get; set; }
 
     }
 }
